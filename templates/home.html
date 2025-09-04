@@ -1,55 +1,240 @@
-<!-- templates/home.html -->
-{% load static %}
-<html lang="nl">
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth scroll-pt-40">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All3</title>
-    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% load static %}
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <style>
+        /* Animatie klassen voor het insliden van links - alleen voor services sectie */
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: all 0.8s ease-out;
+        }
+
+        .slide-in-left.animate {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    </style>
 </head>
-<body class="bg-gradient-to-br from-green-100 via-orange-100 to-green-300 min-h-screen">
-<nav class="sticky top-4 mx-auto max-w-4xl bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-between px-8 py-3 z-10">
-    <div class="flex items-center gap-2">
-        <span class="text-2xl font-bold text-green-700 tracking-tight">All3.nl</span>
-    </div>
-    <ul class="hidden md:flex gap-8">
-        <li>
-            <a href="/"
-               class="text-orange-600 font-semibold px-3 py-2 rounded-full hover:bg-orange-100 hover:text-green-700 transition">Home</a>
-        </li>
-        <li>
-            <a href="/diensten"
-               class="text-orange-600 font-semibold px-3 py-2 rounded-full hover:bg-orange-100 hover:text-green-700 transition">Diensten</a>
-        </li>
-        <li>
-            <a href="/contact"
-               class="text-orange-600 font-semibold px-3 py-2 rounded-full hover:bg-orange-100 hover:text-green-700 transition">Contact</a>
-        </li>
-    </ul>
-    <button class="md:hidden flex items-center text-orange-600 hover:text-green-700">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
-        </svg>
-    </button>
-</nav>
-<div class="flex items-center justify-center min-h-[80vh]">
-    <div class="bg-white rounded-2xl shadow-xl p-10 max-w-2xl w-full text-center">
-        <h1 class="text-4xl font-bold text-green-700 mb-3">All3.nl</h1>
-        <p class="text-md text-gray-700 mb-6">Duurzaam beheer van tuinen, parken en natuurgebieden. Wij zorgen voor een
-            groene en gezonde leefomgeving.</p>
-        <div class="flex flex-col gap-4 mb-8">
-            <div class="bg-green-50 rounded-lg p-4 shadow text-left">
-                <h2 class="text-lg font-semibold text-orange-600">Tuinonderhoud</h2>
-                <p class="text-gray-600">Professioneel onderhoud voor particuliere en zakelijke tuinen.</p>
+<body>
+{% include "includes/navbar.html" %}
+<main class="min-h-screen flex flex-col overflow-auto bg-white dark:bg-gray-900">
+    <section class="mt-52" id="hero-section">
+        <div class="container flex flex-col px-8 py-10 mx-auto lg:h-[40rem] lg:py-16 lg:flex-row lg:items-center">
+            <div class="w-full lg:w-1/2 lg:-mr-8">
+                <div class="lg:max-w-lg">
+                    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl sm:text-4xl lg:text-6xl dark:text-white">
+                        All3<span
+                            class="underline underline-offset-3 decoration-8 decoration-green-400 dark:decoration-green-600">.nl</span>
+                    </h1>
+                    <div class="mt-2 space-y-3">
+                        <p class="text-left text-gray-900 dark:text-gray-200 text-xl">
+                            All3 staat voor professioneel tuinonderhoud en groenbeheer in Almere en omgeving. Of het nu
+                            gaat om VvE’s, bedrijven of vastgoed: wij zorgen dat elk terrein er verzorgd en uitnodigend
+                            bijligt. Met onze verrassende webshop brengen we bovendien sfeer en inspiratie in elk
+                            seizoen.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-full mt-8 bg-transparent border rounded-md lg:max-w-sm dark:border-gray-700 focus-within:border-green-400 focus-within:ring focus-within:ring-green-300 dark:focus-within:border-green-400 focus-within:ring-opacity-40">
+                    <form class="flex flex-col lg:flex-row">
+                        <input type="email" placeholder="Voer uw e-mail in"
+                               class="flex-1 h-10 px-4 py-2 m-1 text-gray-700 placeholder-gray-400 bg-transparent border-none appearance-none dark:text-gray-200 focus:outline-none focus:placeholder-transparent focus:ring-0"/>
+
+                        <button type="button"
+                                class="h-10 px-4 py-2 m-1 text-white transition-colors duration-300 transform bg-green-500 rounded-md hover:bg-green-400 focus:outline-none focus:bg-green-400">
+                            Meld je aan
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div class="bg-green-50 rounded-lg p-4 shadow text-left">
-                <h2 class="text-lg font-semibold text-orange-600">Natuurbeheer</h2>
-                <p class="text-gray-600">Ecologisch beheer van parken en natuurgebieden.</p>
+
+            <div class="flex items-center justify-center w-full h-96 lg:w-1/2 lg:-ml-8">
+                <img class="object-cover w-full h-full mx-auto rounded-md lg:max-w-2xl"
+                     src="{% static 'images/hero.jpg' %}" alt="glasses photo">
             </div>
         </div>
-        <a href="/contact"
-           class="inline-block bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg shadow hover:bg-green-700 transition">Neem
-            contact op</a>
-    </div>
-</div>
+    </section>
+    <section class="bg-white dark:bg-gray-900 mt-32 slide-in-left" id="services-section">
+        <div class="container px-6 py-10 mx-auto">
+            <div class="text-center">
+                <h1 class="text-2xl font-semibold text-gray-800 capitalize lg:text-3xl dark:text-white">Vakkundig groen
+                    onderhoud voor bedrijven en Vve's Almere</h1>
+
+                <p class="max-w-lg mx-auto mt-4 text-1xl dark:text-white">
+                    Technisch beheer van Nederlands vastgoed
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-3">
+                <div>
+                    <img class="relative z-10 object-cover w-full rounded-md h-96"
+                         src="{% static 'images/slide1.jpg' %}" alt="">
+
+                    <div class="relative z-20 max-w-sm p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
+                        <a href="#" class="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl">
+                            Groen beheer en groen onderhoud op locatie
+                        </a>
+
+                        <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veritatis sint autem nesciunt,
+                            laudantium quia tempore delect
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <img class="relative z-10 object-cover w-full rounded-md h-96" src="{% static 'images/hero.jpg' %}"
+                         alt="">
+
+                    <div class="relative z-20 max-w-sm p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
+                        <a href="#" class="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl">
+                            Professionele uitstraling van uw bedrijfsterrein en vastgoed
+                        </a>
+
+                        <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veritatis sint autem nesciunt,
+                            laudantium quia tempore delect
+                        </p>
+                    </div>
+                </div>
+
+                <div>
+                    <img class="relative z-10 object-cover w-full rounded-md h-96"
+                         src="{% static 'images/slide3.jpg' %}" alt="">
+
+                    <div class="relative z-20 max-w-sm p-6 mx-auto -mt-20 bg-white rounded-md shadow dark:bg-gray-900">
+                        <a href="#" class="font-semibold text-gray-800 hover:underline dark:text-white md:text-xl">
+                            Direct groen onderhoud plannen? Regel het gemakkelijk via onze shop
+                        </a>
+
+                        <p class="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure veritatis sint autem nesciunt,
+                            laudantium quia tempore delect
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-white dark:bg-gray-900 mt-52 mb-32">
+        <div class="container px-6 py-12 mx-auto">
+            <div class="md:flex md:-mx-3 md:items-center md:justify-between">
+                <h1 class="text-xl font-semibold tracking-tight text-gray-800 md:mx-3 xl:text-2xl dark:text-white">
+                    Abonneer op onze nieuwsbrief</h1>
+
+                <div class="mt-6 md:mx-3 shrink-0 md:mt-0 md:w-auto">
+                    <a href="#"
+                       class="inline-flex items-center justify-center w-full px-4 py-2 text-sm text-white duration-300 bg-green-700 rounded-lg gap-x-3 hover:bg-green-600 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+                        <span>Aanmelden</span>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                             stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="my-6 border-gray-200 md:my-10 dark:border-gray-700">
+
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <div>
+                    <p class="font-semibold text-gray-800 dark:text-white">Quick Link</p>
+
+                    <div class="flex flex-col items-start mt-5 space-y-2">
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Home</a>
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Who
+                            We Are</a>
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Our
+                            Philosophy</a>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-semibold text-gray-800 dark:text-white">Industries</p>
+
+                    <div class="flex flex-col items-start mt-5 space-y-2">
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Retail
+                            & E-Commerce</a>
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Information
+                            Technology</a>
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Finance
+                            & Insurance</a>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-semibold text-gray-800 dark:text-white">Services</p>
+
+                    <div class="flex flex-col items-start mt-5 space-y-2">
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Translation</a>
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Proofreading
+                            & Editing</a>
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">Content
+                            Creation</a>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="font-semibold text-gray-800 dark:text-white">Contact Us</p>
+
+                    <div class="flex flex-col items-start mt-5 space-y-2">
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">+880
+                            768 473 4978</a>
+                        <a href="#"
+                           class="text-gray-600 transition-colors duration-300 dark:text-gray-300 dark:hover:text-blue-400 hover:underline hover:text-blue-500">info@merakiui.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <section class="fixed bottom-0 w-full bg-gray-50 dark:bg-gray-800">
+        <div class="max-w-5xl px-4 py-8 mx-auto md:flex md:items-center md:gap-x-6">
+            <div class="flex items-start md:items-center gap-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-6 h-6 text-gray-500 shrink-0 dark:text-gray-300">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z"/>
+                </svg>
+
+                <p class="text-gray-700 dark:text-gray-200">
+                    Wij gebruiken cookies om uw gebruikservaring te verbeteren. Door deze site te blijven bezoeken, gaat u akkoord met ons gebruik van <a
+                        href="#" class="underline transition-colors duration-200 hover:text-blue-500 ">cookies</a>.
+                </p>
+            </div>
+
+            <button class="items-center justify-center hidden text-gray-700 transition-colors duration-300 rounded-full md:flex dark:text-gray-200 dark:hover:bg-gray-700 w-7 h-7 focus:outline-none hover:bg-gray-200">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                    <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z"/>
+                </svg>
+            </button>
+        </div>
+    </section>
+    <script src="{% static 'js/navbar.js' %}"></script>
+    <script src="{% static 'js/section.js' %}"></script>
+
+</main>
 </body>
 </html>

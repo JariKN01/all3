@@ -55,10 +55,11 @@ ROOT_URLCONF = 'all3.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
+        'DIRS': [BASE_DIR / 'templates'],  # << dit moet naar jouw templates-map wijzen
+        'APP_DIRS': True,                  # laat ook templates in app-mappen toe
         'OPTIONS': {
             'context_processors': [
+                'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -129,5 +130,8 @@ MEDIA_ROOT = BASE_DIR / "media"
 TAILWIND_APP_NAME = 'theme'
 
 TAILWIND_APP_NAME = 'theme'
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

@@ -1,0 +1,55 @@
+<!-- templates/home.html -->
+{% load static %}
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>All3</title>
+    <link href="{% static 'css/dist/styles.css' %}" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-green-100 via-orange-100 to-green-300 min-h-screen">
+<nav class="sticky top-4 mx-auto max-w-4xl bg-white/90 backdrop-blur rounded-full shadow-lg flex items-center justify-between px-8 py-3 z-10">
+    <div class="flex items-center gap-2">
+        <span class="text-2xl font-bold text-green-700 tracking-tight">All3.nl</span>
+    </div>
+    <ul class="hidden md:flex gap-8">
+        <li>
+            <a href="/"
+               class="text-orange-600 font-semibold px-3 py-2 rounded-full hover:bg-orange-100 hover:text-green-700 transition">Home</a>
+        </li>
+        <li>
+            <a href="/diensten"
+               class="text-orange-600 font-semibold px-3 py-2 rounded-full hover:bg-orange-100 hover:text-green-700 transition">Diensten</a>
+        </li>
+        <li>
+            <a href="/contact"
+               class="text-orange-600 font-semibold px-3 py-2 rounded-full hover:bg-orange-100 hover:text-green-700 transition">Contact</a>
+        </li>
+    </ul>
+    <button class="md:hidden flex items-center text-orange-600 hover:text-green-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16"/>
+        </svg>
+    </button>
+</nav>
+<div class="flex items-center justify-center min-h-[80vh]">
+    <div class="bg-white rounded-2xl shadow-xl p-10 max-w-2xl w-full text-center">
+        <h1 class="text-4xl font-bold text-green-700 mb-3">All3.nl</h1>
+        <p class="text-md text-gray-700 mb-6">Duurzaam beheer van tuinen, parken en natuurgebieden. Wij zorgen voor een
+            groene en gezonde leefomgeving.</p>
+        <div class="flex flex-col gap-4 mb-8">
+            <div class="bg-green-50 rounded-lg p-4 shadow text-left">
+                <h2 class="text-lg font-semibold text-orange-600">Tuinonderhoud</h2>
+                <p class="text-gray-600">Professioneel onderhoud voor particuliere en zakelijke tuinen.</p>
+            </div>
+            <div class="bg-green-50 rounded-lg p-4 shadow text-left">
+                <h2 class="text-lg font-semibold text-orange-600">Natuurbeheer</h2>
+                <p class="text-gray-600">Ecologisch beheer van parken en natuurgebieden.</p>
+            </div>
+        </div>
+        <a href="/contact"
+           class="inline-block bg-orange-600 text-white font-semibold px-8 py-3 rounded-lg shadow hover:bg-green-700 transition">Neem
+            contact op</a>
+    </div>
+</div>
+</body>
+</html>

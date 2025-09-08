@@ -34,12 +34,29 @@
             opacity: 1;
             transform: translateX(0);
         }
+
+        @media (max-width: 767.98px) {
+            .slide-in-left,
+            .slide-in-right {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+
+            #hero-section {
+                margin-top: 5rem !important;
+            }
+
+            #hero-image-container {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
 {% include "includes/navbar.html" %}
 <main class="min-h-screen flex flex-col overflow-auto bg-white dark:bg-gray-900">
-    <section class="lg:mt-52" id="hero-section">
+    <section class="lg:mt-52 sm:mt-2" id="hero-section">
         <div class="container flex flex-col px-8 py-10 mx-auto lg:h-[40rem] lg:py-16 lg:flex-row lg:items-center">
             <div class="w-full lg:w-1/2 lg:-mr-8">
                 <div class="lg:max-w-lg">
@@ -70,13 +87,13 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-center w-full h-96 lg:w-1/2 lg:-ml-8">
+            <div class="flex items-center justify-center w-full h-96 lg:w-1/2 lg:-ml-8" id="hero-image-container">
                 <img class="object-cover w-full h-full mx-auto rounded-md lg:max-w-2xl drop-shadow-lg"
-                     src="{% static 'images/hero-image.jpeg' %}" alt="glasses photo">
+                     src="{% static 'images/hero-image.jpeg' %}" alt="glasses photo" id="hero-image">">
             </div>
         </div>
     </section>
-    <section class="bg-white dark:bg-gray-900 mt-32 slide-in-left" id="services-section">
+    <section class="bg-white dark:bg-gray-900 lg:mt-32 slide-in-left" id="services-section">
         <div class="container px-6 py-10 mx-auto">
             <div class="text-center">
                 <h1 class="text-2xl font-semibold leading-10 text-gray-800 capitalize lg:text-3xl dark:text-white">
@@ -139,7 +156,7 @@
             </div>
         </div>
     </section>
-    <section class="py-24 relative mt-52 slide-in-right">
+    <section class="py-24 relative lg:t-52 slide-in-right">
         <div class="w-full max-w-7xl px-4 md:px-5 lg:px-6 mx-auto">
             <div class="">
                 <h2 class="font-manrope font-bold text-2xl sm:text-3xl text-black dark:text-white mb-8 text-center">
@@ -257,7 +274,8 @@
                                 <div class="flex flex-col sm:flex-row items-center max-lg:justify-center w-full h-full">
                                     <div
                                             class="sm:pr-3 sm:border-r border-gray-200 flex items-center justify-center flex-col">
-                                        <h2 class="font-manrope font-bold text-5xl text-black dark:text-white text-center mb-4">4.3</h2>
+                                        <h2 class="font-manrope font-bold text-5xl text-black dark:text-white text-center mb-4">
+                                            4.3</h2>
                                         <div class="flex items-center gap-3 mb-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
                                                  viewBox="0 0 36 36" fill="none">
@@ -330,7 +348,8 @@
 
                                     <div
                                             class="sm:pl-3 sm:border-l border-gray-200 flex items-center justify-center flex-col">
-                                        <h2 class="font-manrope font-bold text-5xl text-black dark:text-white text-center mb-4">4.8</h2>
+                                        <h2 class="font-manrope font-bold text-5xl text-black dark:text-white text-center mb-4">
+                                            4.8</h2>
                                         <div class="flex items-center gap-3 mb-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
                                                  viewBox="0 0 36 36" fill="none">
@@ -418,7 +437,8 @@
                     </div>
                 </div>
                 <div class="pb-8 border-b border-gray-200 max-xl:max-w-3xl max-xl:mx-auto">
-                    <h4 class="font-manrope font-semibold text-3xl leading-10 text-black dark:text-white mb-6">Meest nuttige positieve review</h4>
+                    <h4 class="font-manrope font-semibold text-3xl leading-10 text-black dark:text-white mb-6">Meest
+                        nuttige positieve review</h4>
                     <div class="flex sm:items-center flex-col sm:flex-row justify-between  mb-4">
                         <div class="flex items-center gap-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"
@@ -503,7 +523,7 @@
         </div>
     </section>
 
-    <footer class="bg-white dark:bg-gray-900 mt-52 mb-32">
+    <footer class="bg-white dark:bg-gray-900 lg:mt-52 mb-32">
         <div class="container px-6 py-12 mx-auto">
             <div class="md:flex md:-mx-3 md:items-center md:justify-between">
                 <h1 class="text-xl font-semibold tracking-tight text-gray-800 md:mx-3 xl:text-2xl dark:text-white">
